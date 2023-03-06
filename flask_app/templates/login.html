@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    
+    <div class="contenedor">
+
+    <h2>Welcome!</h2>
+
+    <div class="bloque">
+        <div id="register">
+            <h3>Register</h3>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        {% if message != 'Either the email or the password is incorrect' %}
+                            <p>{{message}}</p>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+                
+
+            <form action="/save_user" method="post">
+
+                <div class="campo">
+                    <label>Name:</label>
+                    <input type="text" name="name">
+                </div>
+
+                <div class="campo">
+                    <label>Alias:</label>
+                    <input type="text" name="alias">
+                </div>
+
+                <div class="campo">
+                    <label>Email:</label>
+                    <input type="text" name="email">
+                </div>
+
+                <div class="campo">
+                    <label>Password:</label>
+                    <input type="password" name="password">
+                </div>
+                <p>*Password should be at least 8 characters long</p>
+
+                <div class="campo">
+                    <label>Confirm pw:</label>
+                    <input type="password" name="password_2">
+                </div>
+
+                <div class="campo">
+                    <label>Birth date:</label>
+                    <input type="date" name="birthday">
+                </div>
+
+                
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+
+        <div id="login">
+            <h3>Login</h3>
+
+            <form action="/login" method="post">
+                <div class="campo">
+                    <label>Email:</label>
+                    <input type="text" name="email">
+                </div>
+                <div class="campo">
+                    <label>Password:</label>
+                    <input type="password" name="password">
+                </div>
+
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            {% if message == 'Either the email or the password is incorrect' %}
+                                <p>{{message}}</p>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <button type="submit">Log in</button>
+            </form>            
+
+        </div>
+    </div>
+
+    </div>
+
+</body>
+</html>

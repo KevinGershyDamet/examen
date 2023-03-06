@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="encabezado">
+            <h2>Hello, {{session['alias']}}</h2>
+            <a href="/end_session" class="boton">Logout</a>
+        </div>
+
+        {% if fr %}
+            <h4>This is your list of friends:</h4>
+            
+            <table class="table table-striped" id="friends">
+                <thead class="thead-dark">
+                    <th scope="col">Alias</th>
+                    <th scope="col">Actions</th>
+                </thead>
+                <tbody>
+                    {% for x in fr %}        
+                        <tr scope="row">
+                            <td>{{x['friend_alias']}}</td>
+                            <td><a href="/user/{{x['friend_id']}}">View profile</a> | <a href="/remove/{{x['friend_id']}}">Remove as friend</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>You currently have NO friends :(</p>
+        {% endif %}
+
+        {% if not_fr %}
+        <h4>Other users not on your friends list:</h4>
+        
+        <table class="table table-striped" id="not_friends">
+            <thead class="thead-dark">
+                <th>Alias</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for y in not_fr %}        
+                    <tr>
+                        <td><a href="/user/{{y['id']}}">{{y['alias']}}</a></td>
+                        <td><a href="/add/{{y['id']}}">Add as friend</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+        
+    </div>
+</body>
+</html>

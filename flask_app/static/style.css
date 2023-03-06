@@ -1,0 +1,58 @@
+
+.contenedor {
+    margin: 5% 15%; padding: 2% 5%;
+    background-color: rgb(55, 55, 55);
+    border: solid 3px black;
+    font-family: 'Calibri';
+    color: white
+}
+
+.bloque {
+    display: flex;
+    justify-content: space-around;
+}
+
+p {
+    color: red;
+    font-weight: bold;
+    margin: 0;
+}
+
+input, label {
+    margin: 2%;
+}
+
+.campo {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+}
+
+button, .boton {
+    border-radius: 10px;
+    margin: 5% 0;
+    width: 80px;
+    border: solid 1px black;
+    text-align: center;
+    color: black;
+}
+
+#friends, #not_friends {
+    width: 1100px;
+    margin: 5%;
+}
+
+.encabezado {
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.container {
+    margin: 1% 15%;
+}
+
+#user_card {
+    margin: 5% 0;
+}
+
